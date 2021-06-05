@@ -1,4 +1,4 @@
-import { AppBar, fade, InputBase, Toolbar, Typography,makeStyles, IconButton} from '@material-ui/core'
+import { AppBar, fade, InputBase, Toolbar, Typography,makeStyles, IconButton, Paper, Switch, FormControlLabel} from '@material-ui/core'
 import React from 'react'
 import {AcUnitRounded, Search,Menu} from "@material-ui/icons";
 
@@ -73,10 +73,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export const Header = (props) => {
   const classes = useStyles(props);
   return (
-   <AppBar position = "static">
+    <Paper elevation  = "5">
+      <AppBar position = "static">
      <Toolbar>
       <IconButton
         edge="start"
@@ -89,6 +91,17 @@ export const Header = (props) => {
        <Typography  className = {classNames(classes.typographyStyle,classes.typographyBackground)}>
          Coffee shop
        </Typography>
+       <FormControlLabel
+        control={
+          <Switch
+            checked={props.darkMode}
+            onChange={()=>props.handleMode(!props.darkMode)}
+            name="checkedB"
+            color="black"
+          />
+        }
+        label="Light/Dark"
+      />
        <div className={classes.search}>
             <div className={classes.searchIcon}>
               <Search />
@@ -106,5 +119,6 @@ export const Header = (props) => {
        <AcUnitRounded  className = {classes.iconStyle}/>
      </Toolbar>
    </AppBar>
+    </Paper> 
   )
 }

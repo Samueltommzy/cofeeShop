@@ -1,22 +1,31 @@
 import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
-import  { Grid, makeStyles } from '@material-ui/core';
+import  { Grid, makeStyles,ThemeProvider,createMuiTheme,Paper } from '@material-ui/core';
 import { Header } from './Components/Header';
 import { Content } from './Components/Content';
 import {grey} from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   containerStyle:{
-    backgroundColor: 'peach'
+    // backgroundColor: 'peach'
   }
 })
 function App() {
   const classes = useStyles();
-  console.log('classes',classes)
+  const [darkMode,setDarkMode] = useState(false);
+  const theme = createMuiTheme({
+    palette:{
+      type:darkMode?'dark':'light'
+    }
+  })
+
   return (
-   <Grid container direction = "column">
+    <ThemeProvider theme = {theme}>
+      <Paper>
+      <Grid container direction = "column">
      <Grid item >
-       <Header cool ={true}/>
+       <Header cool ={true} darkMode = {darkMode} handleMode = {(mode)=>setDarkMode(mode)}/>
      </Grid>
      <Grid item container className = {classes.containerStyle}>
        <Grid item xs={0} sm = {2}/>
@@ -26,6 +35,8 @@ function App() {
        <Grid item xs={0} sm = {2}/>
      </Grid>
    </Grid>
+      </Paper>
+    </ThemeProvider>
   );
 }
 

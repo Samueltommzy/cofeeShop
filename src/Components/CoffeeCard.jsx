@@ -1,12 +1,16 @@
 import React from 'react'
-import { Card, CardActions,CardContent, Button,Typography,CardHeader,Avatar, IconButton, CardMedia} from "@material-ui/core";
+import { Card, CardActions,CardContent, Button,Typography,CardHeader,Avatar, IconButton, CardMedia, Paper} from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
 import { Share } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
     marginTop: '8px',
-    maxHeight: '350px'
+    maxHeight: '350px',
+    '&:hover':{
+      cursor: 'pointer',
+      transition: '0.2'
+    }
   }
 });
 
@@ -14,7 +18,8 @@ export const CoffeeCard = (props) => {
   const classes = useStyles();
   const {avatarSrc,title,subTitle,description,imgSrc} = props;
   return (
-    <Card className={classes.root}>
+    <Paper elevation = "10">
+       <Card className={classes.root}>
        <CardHeader
         avatar={
           <Avatar src ={avatarSrc} aria-label="recipe" className={classes.avatar}>
@@ -43,5 +48,6 @@ export const CoffeeCard = (props) => {
       <Button size="small">Learn More</Button>
     </CardActions>
   </Card>
+    </Paper> 
   )
 }
